@@ -188,7 +188,7 @@ func TestNormalization(t *testing.T) {
 	v := Vector(4, 0, 0)
 	r := v.Normalize()
 	if !r.Equals(Vector(1, 0, 0)) {
-		t.Errorf("Expected normalization of %s to be (1, 0, 0), got (%f, %f, %f)", v.String(), r.X, r.Y, r.Z)
+		t.Errorf("Expected normalization of %s to be (1, 0, 0), got (%f, %f, %f)", v, r.X, r.Y, r.Z)
 	}
 
 	v = Vector(1, 2, 3)
@@ -210,7 +210,7 @@ func TestDotProduct(t *testing.T) {
 
 	dot := v1.Dot(v2)
 	if !FloatEqual(dot, 20) {
-		t.Errorf("Expected dot product of (%s) and (%s) to be 20, got %f", v1.String(), v2.String(), dot)
+		t.Errorf("Expected dot product of (%s) and (%s) to be 20, got %f", v1, v2, dot)
 	}
 }
 
@@ -221,12 +221,12 @@ func TestCrossProduct(t *testing.T) {
 
 	r := v1.Cross(v2)
 	if !r.Equals(expected) {
-		t.Errorf("Expected cross product of (%s) and (%s) to be %s, got %s", v1.String(), v2.String(), expected.String(), r.String())
+		t.Errorf("Expected cross product of (%s) and (%s) to be %s, got %s", v1, v2, expected, r)
 	}
 
 	expected = Vector(1, -2, 1)
 	r = v2.Cross(v1)
 	if !r.Equals(expected) {
-		t.Errorf("Expected cross product of (%s) and (%s) to be %s, got %s", v2.String(), v1.String(), expected.String(), r.String())
+		t.Errorf("Expected cross product of (%s) and (%s) to be %s, got %s", v2, v1, expected, r)
 	}
 }
