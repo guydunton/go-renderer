@@ -60,24 +60,34 @@ func CanvasToPPM(c Canvas) string {
 			line.WriteString(fmt.Sprintf("%d %d %d ", r, g, b))
 		}
 
+		// 2 versions of the string so we can manipulate it
 		lineStr := strings.TrimSpace(line.String())
-		runes := []rune(lineStr)
-
-		rest := lineStr[:]
-
-		counter := 0
-		for len(rest) > 70 {
-			lastSpace := strings.LastIndex(rest[:70], " ")
-			counter += lastSpace
-			runes[counter] = '\n'
-			counter++
-			rest = rest[lastSpace+1:]
-		}
-		lineStr = string(runes)
-		output.WriteString(lineStr + "\n")
+		output.WriteString(chunkLine(lineStr) + "\n")
 	}
 
 	return output.String()
+}
+
+func chunkLine(line string) string {
+	// Create a version of the string that can be manipulated
+	runes := []rune(line)
+
+	// View on the string
+	lineView := line[:]
+
+	// Keep a newlineIndex to track the position of the newlines
+	newlineIndex := 0
+	for len(lineView) > 70 {
+		newlineIndex += strings.LastIndex(lineView[:70], " ")
+
+		// Insert the newline character & bump on the index
+		runes[newlineIndex] = '\n'
+		newlineIndex++
+
+		// Reset the view to the remaining part of the string
+		lineView = line[newlineIndex:]
+	}
+	return string(runes)
 }
 
 func valueToPPM(val float64) int {
