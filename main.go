@@ -1,6 +1,7 @@
 package main
 
 import (
+	"guydunton/go-renderer/math"
 	"guydunton/go-renderer/render"
 	"log"
 	"os"
@@ -8,9 +9,9 @@ import (
 
 func main() {
 	canvas := render.NewCanvas(900, 550)
-	start := render.Point(0, 1, 0)
-	velocity := render.Vector(1, 1.8, 0).Normalize().Multiply(11.25)
-	gravity := render.Vector(0, -0.1, 0)
+	start := math.Point(0, 1, 0)
+	velocity := math.Vector(1, 1.8, 0).Normalize().Multiply(11.25)
+	gravity := math.Vector(0, -0.1, 0)
 
 	p := start
 

@@ -1,11 +1,15 @@
 package render
 
+import (
+	"guydunton/go-renderer/math"
+)
+
 type Color struct {
-	data Tuple
+	data math.Tuple
 }
 
 func NewColor(r, g, b float64) Color {
-	return Color{data: NewTuple(r, g, b, 0.0)}
+	return Color{data: math.NewTuple(r, g, b, 0.0)}
 }
 
 //--------------------------------------------------------------

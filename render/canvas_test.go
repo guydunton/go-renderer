@@ -1,7 +1,6 @@
 package render
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 )
@@ -60,7 +59,6 @@ func TestCanvasPPMContent(t *testing.T) {
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
 `
 	ppm := CanvasToPPM(c)
-	fmt.Printf("%s", ppm)
 	body := strings.Split(ppm, "\n")[3:]
 	bodyJoined := strings.Join(body, "\n")
 	if !strings.EqualFold(bodyJoined, expectedBody) {
