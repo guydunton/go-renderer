@@ -13,13 +13,9 @@ func NewTuple(x, y, z, w float64) Tuple {
 	return Tuple{X: x, Y: y, Z: z, W: w}
 }
 
-func Point(x, y, z float64) Tuple {
-	return NewTuple(x, y, z, 1.0)
-}
-
-func Vector(x, y, z float64) Tuple {
-	return NewTuple(x, y, z, 0.0)
-}
+//--------------------------------------------------------------
+// Methods
+//--------------------------------------------------------------
 
 func (t Tuple) IsPoint() bool {
 	return t.W == 1.0
@@ -29,20 +25,11 @@ func (t Tuple) IsVector() bool {
 	return t.W == 0.0
 }
 
-func FloatEqual(a, b float64) bool {
-	const epsilon = 1e-10
-	return math.Abs(a-b) < epsilon
-}
-
 func (t Tuple) Equals(other Tuple) bool {
 	return FloatEqual(t.X, other.X) &&
 		FloatEqual(t.Y, other.Y) &&
 		FloatEqual(t.Z, other.Z) &&
 		FloatEqual(t.W, other.W)
-}
-
-func Equals(a1 Tuple, a2 Tuple) bool {
-	return a1.Equals(a2)
 }
 
 func (t Tuple) String() string {
@@ -63,10 +50,6 @@ func (t Tuple) Sub(other Tuple) (Tuple, error) {
 		return Tuple{}, fmt.Errorf("invalid W value: %f", w)
 	}
 	return NewTuple(t.X-other.X, t.Y-other.Y, t.Z-other.Z, t.W-other.W), nil
-}
-
-func Negate(t Tuple) Tuple {
-	return NewTuple(-t.X, -t.Y, -t.Z, -t.W)
 }
 
 func (t Tuple) Multiply(scalar float64) Tuple {
@@ -106,4 +89,29 @@ func (t Tuple) Cross(other Tuple) Tuple {
 		t.X*other.Y-t.Y*other.X,
 		0.0, // Cross product results in a vector
 	)
+}
+
+//--------------------------------------------------------------
+// Free functions
+//--------------------------------------------------------------
+
+func Point(x, y, z float64) Tuple {
+	return NewTuple(x, y, z, 1.0)
+}
+
+func Vector(x, y, z float64) Tuple {
+	return NewTuple(x, y, z, 0.0)
+}
+
+func FloatEqual(a, b float64) bool {
+	const epsilon = 1e-10
+	return math.Abs(a-b) < epsilon
+}
+
+func Equals(a1 Tuple, a2 Tuple) bool {
+	return a1.Equals(a2)
+}
+
+func Negate(t Tuple) Tuple {
+	return NewTuple(-t.X, -t.Y, -t.Z, -t.W)
 }

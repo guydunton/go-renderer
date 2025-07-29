@@ -17,3 +17,8 @@ make run
 # remove any artifacts
 make clean
 ```
+
+| Chapter | Description   | Output                                             |
+| ------- | ------------- | -------------------------------------------------- |
+| 1       | Vector Math   |                                                    |
+| 2       | Canvas output | ![Canvas with an arc of dots](./docs/chapter1.jpg) |

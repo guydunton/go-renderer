@@ -8,6 +8,10 @@ func NewColor(r, g, b float64) Color {
 	return Color{data: NewTuple(r, g, b, 0.0)}
 }
 
+//--------------------------------------------------------------
+// Methods
+//--------------------------------------------------------------
+
 func (c Color) Red() float64 {
 	return c.data.X
 }
