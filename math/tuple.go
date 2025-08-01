@@ -25,7 +25,7 @@ func (t Tuple) IsVector() bool {
 	return t.W == 0.0
 }
 
-func (t Tuple) Equals(other Tuple) bool {
+func (t Tuple) Equal(other Tuple) bool {
 	return FloatEqual(t.X, other.X) &&
 		FloatEqual(t.Y, other.Y) &&
 		FloatEqual(t.Z, other.Z) &&
@@ -109,7 +109,7 @@ func FloatEqual(a, b float64) bool {
 }
 
 func Equals(a1 Tuple, a2 Tuple) bool {
-	return a1.Equals(a2)
+	return a1.Equal(a2)
 }
 
 func Negate(t Tuple) Tuple {

@@ -28,7 +28,7 @@ func TestTuple(t *testing.T) {
 	c1 := NewTuple(1.00000000001, 2.0, 3.0, 1.0)
 	c2 := NewTuple(1.0, 2.0, 3.0, 1.0)
 
-	if !c1.Equals(c2) {
+	if !c1.Equal(c2) {
 		t.Error("Expected Tuples to be equal, but they are not")
 	}
 }
@@ -72,7 +72,7 @@ func TestSub(t *testing.T) {
 	p2 := Point(5, 6, 7)
 
 	result, _ := p1.Sub(p2)
-	if !result.Equals(Vector(-2, -4, -6)) {
+	if !result.Equal(Vector(-2, -4, -6)) {
 		t.Errorf("Expected result of subtraction to be (-2, -4, -6), got (%f, %f, %f)", result.X, result.Y, result.Z)
 	}
 }
@@ -82,7 +82,7 @@ func TestSub2(t *testing.T) {
 	v := Vector(5, 6, 7)
 
 	result, _ := p.Sub(v)
-	if !result.Equals(Point(-2, -4, -6)) {
+	if !result.Equal(Point(-2, -4, -6)) {
 		t.Errorf("Expected result of subtraction to be (-2, -4, -6), got (%f, %f, %f)", result.X, result.Y, result.Z)
 	}
 }
@@ -92,7 +92,7 @@ func TestSub3(t *testing.T) {
 	v2 := Vector(5, 6, 7)
 
 	result, _ := v1.Sub(v2)
-	if !result.Equals(Vector(-2, -4, -6)) {
+	if !result.Equal(Vector(-2, -4, -6)) {
 		t.Errorf("Expected result of subtraction to be (-2, -4, -6), got (%f, %f, %f)", result.X, result.Y, result.Z)
 	}
 }
@@ -112,7 +112,7 @@ func TestVecFromZero(t *testing.T) {
 	v := Vector(1, -2, 3)
 
 	result, _ := zero.Sub(v)
-	if !result.Equals(Vector(-1, 2, -3)) {
+	if !result.Equal(Vector(-1, 2, -3)) {
 		t.Error("Expected result of subtraction to be (-1, 2, -3)")
 	}
 }
@@ -120,7 +120,7 @@ func TestVecFromZero(t *testing.T) {
 func TestTupleNegation(t *testing.T) {
 	a := NewTuple(1, -2, 3, -4)
 	result := Negate(a)
-	if !result.Equals(NewTuple(-1, 2, -3, 4)) {
+	if !result.Equal(NewTuple(-1, 2, -3, 4)) {
 		t.Errorf("Expected negation to be (-1, 2, -3, 4), got (%f, %f, %f, %f)", result.X, result.Y, result.Z, result.W)
 	}
 }
@@ -187,13 +187,13 @@ func TestMagnitude(t *testing.T) {
 func TestNormalization(t *testing.T) {
 	v := Vector(4, 0, 0)
 	r := v.Normalize()
-	if !r.Equals(Vector(1, 0, 0)) {
+	if !r.Equal(Vector(1, 0, 0)) {
 		t.Errorf("Expected normalization of %s to be (1, 0, 0), got (%f, %f, %f)", v, r.X, r.Y, r.Z)
 	}
 
 	v = Vector(1, 2, 3)
 	r = v.Normalize()
-	if !r.Equals(Vector(1/math.Sqrt(14), 2/math.Sqrt(14), 3/math.Sqrt(14))) {
+	if !r.Equal(Vector(1/math.Sqrt(14), 2/math.Sqrt(14), 3/math.Sqrt(14))) {
 		t.Errorf("Expected normalization of (1, 2, 3) to be (1/sqrt(14), 2/sqrt(14), 3/sqrt(14)), got (%f, %f, %f)", r.X, r.Y, r.Z)
 	}
 
@@ -220,13 +220,13 @@ func TestCrossProduct(t *testing.T) {
 	expected := Vector(-1, 2, -1)
 
 	r := v1.Cross(v2)
-	if !r.Equals(expected) {
+	if !r.Equal(expected) {
 		t.Errorf("Expected cross product of (%s) and (%s) to be %s, got %s", v1, v2, expected, r)
 	}
 
 	expected = Vector(1, -2, 1)
 	r = v2.Cross(v1)
-	if !r.Equals(expected) {
+	if !r.Equal(expected) {
 		t.Errorf("Expected cross product of (%s) and (%s) to be %s, got %s", v2, v1, expected, r)
 	}
 }

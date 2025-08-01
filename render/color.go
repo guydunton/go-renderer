@@ -29,7 +29,7 @@ func (c Color) Blue() float64 {
 }
 
 func (c Color) Equals(other Color) bool {
-	return c.data.Equals(other.data)
+	return c.data.Equal(other.data)
 }
 
 func (c Color) String() string {
